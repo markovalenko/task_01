@@ -1,6 +1,6 @@
 # task_01
 
-##goal: 
+## goal: 
 
 Application that gives us possibility to search users [params: username, location, programming language] through the service Github. 
 
