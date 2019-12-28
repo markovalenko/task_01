@@ -16,7 +16,7 @@ Handle input logic by yourself, it could be one input with possibility to search
 
 **level one**
 
-Application should be done with pure JavaScript, without any dev stack what was prepared by 3rd party libraries, styling depends on a developer, feel free to use what you want.
+Application should be done with pure JavaScript, without any libraries and dev-stack what was prepared by 3rd party services, styling depends on a developer, feel free to use what you want.
 
 **level two**
 
