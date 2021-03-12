@@ -45,8 +45,6 @@ class Results extends Component {
       this.props.perPage && this.props.perPage > Results.defaultProps.perPage
         ? Results.defaultProps.perPage
         : this.props.perPage;
-
-    console.log(this.props.searchBlock.current.search);
   }
 
   set results(val) {
@@ -68,8 +66,8 @@ class Results extends Component {
     return this.loading;
   }
 
-  set page (page) {
-    this.#currentPage = page
+  set page(page) {
+    this.#currentPage = page;
   }
 
   generateResults = () => {
@@ -113,10 +111,10 @@ class Results extends Component {
     let pagination = [],
       grid = this.props.grid ? " grid" : "",
       results = this.generateResults(),
-      isString = false
+      isString = false;
 
     if (typeof results === "string") {
-      isString = true
+      isString = true;
     } else {
       for (let i = 0; i < results.pages; i++) {
         let p = i + 1;
@@ -127,7 +125,7 @@ class Results extends Component {
           p === this.#currentPage + 1 ||
           p > results.pages - 3
         ) {
-          let className = p === this.#currentPage ? 'current' : ''
+          let className = p === this.#currentPage ? "current" : "";
           pagination.push(
             <li
               onClick={() => {
@@ -154,8 +152,15 @@ class Results extends Component {
           } else {
             return (
               <div>
-                <h2>Total results: {this.#resultsCount} / page: {this.#currentPage} out of {results.pages}</h2>
-                <div className="result-items">{isString ? results : results.items}</div>
+                <h2>
+                  {
+                    isString ? results : `Total results: ${this.#resultsCount} / page:
+                    ${this.#currentPage} out of ${results.pages}`
+                  }
+                </h2>
+                <div className="result-items">
+                  {isString ? '' : results.items}
+                </div>
                 <ul className="pagination">{pagination}</ul>
               </div>
             );

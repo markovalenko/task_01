@@ -23,7 +23,7 @@ class AutoComplete extends Component {
     try {
       clearTimeout(this.#timeout);
     } catch (err) {
-      console.log(err);
+      console.warn(err);
     }
     try {
       this.#timeout = setTimeout(() => {
@@ -66,16 +66,13 @@ class AutoComplete extends Component {
   }
 
   fill = (e) => {
-    console.log(e.prototype)
     let phrase = e.currentTarget ? e.currentTarget.innerText : typeof e === 'string' ? e : null;
     this.props.input.value = phrase;
-    console.log(phrase, e)
     this.setState({ phrase: phrase, completed: true });
   };
 
   changeFocus = (e, focusedBefore) => {
     if(typeof focusedBefore === 'undefined') focusedBefore = true
-    console.log(focusedBefore)
     let key = e.keyCode,
     isArrow = key === 38 || key === 40,
     arrow = key === 38 ? 'down' : 'up' ,

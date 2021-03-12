@@ -9,6 +9,7 @@ class SearchBlock extends Component {
     addFilter: false,
     results: null,
     compactSearch: true,
+    perPage: 100
   };
 
   #queryUpdated = false;
@@ -17,13 +18,32 @@ class SearchBlock extends Component {
     location: null,
     language: null,
   };
+  #perPage = 100;
   #languageAutoComplete = null;
 
   state = {
     query: "",
     page: 1,
-    perPage: 100
+    perPage: this.props.perPage
   };
+
+  set perPage (value) {
+    this.#perPage = value
+    this.setState({
+      perPage:value,
+      query: this.state.query,
+      page:this.state.page
+    }, this.search)
+  }
+
+  set page (value) {
+    this.setState({
+      perPage:this.state.perPage,
+      query: this.state.query,
+      page:value
+    }, this.search)
+
+  }
 
   setQuery = (e) => {
     e.preventDefault();
@@ -51,28 +71,12 @@ class SearchBlock extends Component {
     }
   }
 
-  set perPage (value) {
-    this.setState({
-      perPage:value,
-      query: this.state.query,
-      page:this.state.page
-    }, this.search)
-  }
-
-  set page (value) {
-    this.setState({
-      perPage:this.state.perPage,
-      query: this.state.query,
-      page:value
-    }, this.search)
-
-  }
-
   search = (e) => {
+    if(this.state.query === '') return
     this.props.results.current.loading = true;
     if (e) e.preventDefault();
     fetch(
-      `https://api.github.com/search/users?q=${this.state.query}&per_page=${this.state.perPage}&page=${this.state.page}`
+      `https://api.github.com/search/users?q=${this.state.query}&per_page=${this.#perPage}&page=${this.state.page}`
     )
       .then((response) => response.json())
       .then((jsn) => {
