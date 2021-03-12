@@ -1,0 +1,40 @@
+@import '/src/scss/vars';
+
+.search-block {
+    display: flex;
+
+    form {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        height: 30px;
+        max-height: 30px;
+
+        input,
+        button {
+            border: $border;
+            min-height: $min-h;
+            outline: none;
+            color: $blue;
+        }
+
+        label {
+            span {
+                margin-right: 10px;
+            }
+        }
+
+        p {
+            display: flex;
+            align-items: center;
+        }
+
+        > *:nth-child(n+2) {
+            margin-left: 10px;
+        }
+
+        > div > *:nth-child(n+2) {
+            margin-left: 10px;
+        }
+    }
+}

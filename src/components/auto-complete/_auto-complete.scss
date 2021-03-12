@@ -1,0 +1,22 @@
+@import '/src/scss/vars';
+
+.auto-complete {
+    position: absolute;
+    max-height: calc(10 * 30px);
+    overflow: auto;
+
+    & > div {
+        display: flex;
+        min-height: 30px;
+        padding: $d-pad;
+        background-color: $white;
+        color: $blue;
+        cursor: default;
+
+        &:hover,
+        &:focus {
+            background-color: $blue;
+            color: $white;
+        }
+    }
+}
